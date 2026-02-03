@@ -1,0 +1,7 @@
+target
+uploads
+.vscode
+*.log
+.DS_Store
+.git
+.gitignore

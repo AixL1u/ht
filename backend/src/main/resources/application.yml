@@ -1,0 +1,57 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/heritage?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+  sql:
+    init:
+      mode: never
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  elasticsearch:
+    uris: http://localhost:9200
+    username: 
+    password: 
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration
+      - org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchRestClientAutoConfiguration
+      - org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchClientAutoConfiguration 
+  servlet:
+    multipart:
+      max-file-size: 512MB
+      max-request-size: 512MB
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+app:
+  jwt:
+    secret: "change-this-secret-to-a-long-random-string-at-least-32-bytes"
+    expiration: 86400000
+  uploadDir: "uploads"
+  ratelimit:
+    login:
+      limit: 5
+      windowMs: 60000
+    reservation:
+      limit: 10
+      windowMs: 60000
+    order:
+      limit: 5
+      windowMs: 60000
+  ffmpeg:
+    path: ffmpeg
+    hlsTime: 6
